@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -7,6 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +17,14 @@ public class main extends Application {
 
     Stage window;
     Scene mainScene;
+    private static final int WINDOW_WIDTH = 300;
+    private static final int WINDOW_HEIGHT = 350;
     private static List<Clothes> clothes = new ArrayList<Clothes>();
 
     GridPane layout = new GridPane();
 
     ChoiceBox<String> clothesChoiceBox = new ChoiceBox<>();
     Button addButton = new Button("Add item");
-
     Button showCollection = new Button("Show collection");
 
     //Shirt layout
@@ -36,13 +39,13 @@ public class main extends Application {
 
     //Jacket layout
     Label seasonTypeLabel = new Label("Season type");
-    ChoiceBox<Integer> seasonType = new ChoiceBox<Integer>();
+    ChoiceBox<String> seasonType = new ChoiceBox<String>();
     Label claspTypeLabel = new Label("Clasp type");
-    ChoiceBox<Integer> claspType = new ChoiceBox<Integer>();
+    ChoiceBox<String> claspType = new ChoiceBox<String>();
     Label jacketSizeLabel = new Label("size");
     ChoiceBox<Integer> jacketSize = new ChoiceBox<Integer>();
     Label jacketMaterialLabel = new Label("material");
-    ChoiceBox<Integer> jacketMaterial = new ChoiceBox<Integer>();
+    ChoiceBox<String> jacketMaterial = new ChoiceBox<String>();
 
     //Shoes layout
     Label shoesSizeLabel = new Label("shoes size");
@@ -69,6 +72,19 @@ public class main extends Application {
         layout.setPadding(new Insets(10, 10, 10, 10));
         layout.setVgap(8);
         layout.setHgap(10);
+
+//        GridPane.setConstraints(addButton, 2, 20);
+        Pane buttonPane = new Pane();
+        buttonPane.setMaxHeight(0);
+        buttonPane.setMaxWidth(0);
+        buttonPane.setStyle("-fx-background-color: black;");
+        addButton.setLayoutX(WINDOW_WIDTH / 2 - 50);
+        showCollection.setLayoutX(WINDOW_WIDTH / 2);
+        addButton.setLayoutY(WINDOW_HEIGHT / 2 - 50);
+        showCollection.setLayoutY(WINDOW_HEIGHT / 2);
+        buttonPane.getChildren().add(addButton);
+        buttonPane.getChildren().add(showCollection);
+        layout.getChildren().addAll(buttonPane);
 
         //gridpane constraints for shirt
         GridPane.setConstraints(shirtsChoiceBox, 1, 1);
@@ -117,10 +133,10 @@ public class main extends Application {
         tshirtSize.getItems().addAll(1, 2, 3, 4);
 
         //jacket action
-        seasonType.getItems().addAll(1, 2, 3, 4);
-        claspType.getItems().addAll(1, 2, 3, 4);
-        jacketSize.getItems().addAll(1, 2, 3, 4);
-        jacketMaterial.getItems().addAll(1, 2, 3, 4);
+        seasonType.getItems().addAll("Spring", "Summer", "Autumn", "Winter");
+        claspType.getItems().addAll("Suwak", "Guziki");
+        jacketSize.getItems().addAll(31, 32, 33, 34, 35, 36, 37, 38);
+        jacketMaterial.getItems().addAll("Cotton", "fdsfsd");
 
         //shoes action
         shoesSize.getItems().addAll(1, 2, 3, 4);
@@ -130,7 +146,6 @@ public class main extends Application {
         waistSize.getItems().addAll(1, 2, 3, 4);
 
         clothesChoiceBox.setOnAction(e -> {
-            System.out.println(getChoice(clothesChoiceBox));
             switch(getChoice(clothesChoiceBox)){
                 case "Shirt":
                     this.removeComponentsFromLayout();
@@ -161,11 +176,6 @@ public class main extends Application {
                     Elegant elegant = new Elegant();
                     this.removeComponentsFromLayout();
                     layout.getChildren().addAll(shirtsChoiceBox, shirtMaterial, shirtMaterialLabel, collarSizeLabel, collarSize, hasTie);
-
-                    addButton.setOnAction(e1 -> {
-                        elegant.setHasTie(hasTie.isSelected());
-                        clothes.add(elegant);
-                    });
                     break;
                 case "TShirt":
                     TShirt tshirt = new TShirt();
@@ -180,13 +190,50 @@ public class main extends Application {
             }
         });
 
+        addButton.setOnAction(e1 -> {
+            switch(getChoice(clothesChoiceBox)){
+                case "Shirt":
+                    System.out.println("SHIRT");
+                    break;
+                case "Jacket":
+                    Jacket jacket = new Jacket();
+                    switch(seasonType.getValue()){
+                        case "Spring":
+                            jacket.setSeasonType(Jacket.season.SPRING);
+                            break;
+                        case "Summer":
+                            jacket.setSeasonType(Jacket.season.SUMMER);
+                            break;
+                        case "Autumn":
+                            jacket.setSeasonType(Jacket.season.AUTUMN);
+                            break;
+                        case "Winter":
+                            jacket.setSeasonType(Jacket.season.WINTER);
+                            break;
+                    }
+                    jacket.setClaspType(claspType.getValue());
+                    jacket.setSize(jacketSize.getValue());
+                    jacket.setMaterial(jacketMaterial.getValue());
+                    clothes.add(jacket);
+                    break;
+                case "Shoes":
+                    System.out.println("shoes");
+                    Shoes shoes = new Shoes();
+                    break;
+                case "Trousers":
+                    System.out.println("trousers");
+                    Trousers trousers = new Trousers();
+                    break;
+            }
+        });
+
         showCollection.setOnAction(e -> {
             for(Clothes clothe : clothes){
                 System.out.println(clothe.toString());
             }
         });
 
-        mainScene = new Scene(layout, 300, 480);
+        mainScene = new Scene(layout, WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setScene(mainScene);
         window.show();
     }
@@ -202,6 +249,6 @@ public class main extends Application {
                                        seasonTypeLabel, seasonType, claspTypeLabel, claspType, jacketSizeLabel, jacketSize, jacketMaterialLabel, jacketMaterial,
                                        shoesSizeLabel, shoesSize, hasHeel,
                                        trousersLengthLabel, trousersLength, trousersMaterialLabel, trousersMaterial, waistSizeLabel, waistSize,
-                                       addButton, showCollection);
+                                       showCollection);
     }
 }

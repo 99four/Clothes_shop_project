@@ -3,7 +3,7 @@
  */
 public class Jacket extends Clothes {
     public enum season {
-        SUMMER, WINTER;
+        SPRING, SUMMER, AUTUMN, WINTER;
     }
 
     private int size;
@@ -41,5 +41,15 @@ public class Jacket extends Clothes {
 
     public void setSeasonType(season seasonType) {
         this.seasonType = seasonType;
+    }
+
+    @Override
+    public String toString() {
+        return "Jacket{" +
+                "size=" + size +
+                ", claspType='" + claspType + '\'' +
+                ", material='" + material + '\'' +
+                ", seasonType=" + seasonType +
+                '}';
     }
 }
