@@ -10,6 +10,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +58,7 @@ public class main extends Application {
     Label trousersLengthLabel = new Label("trousers length");
     ChoiceBox<Integer> trousersLength = new ChoiceBox<Integer>();
     Label trousersMaterialLabel = new Label("material");
-    ChoiceBox<Integer> trousersMaterial = new ChoiceBox<Integer>();
+    ChoiceBox<String> trousersMaterial = new ChoiceBox<String>();
     Label waistSizeLabel = new Label("waist size");
     ChoiceBox<Integer> waistSize = new ChoiceBox<Integer>();
 
@@ -73,15 +75,14 @@ public class main extends Application {
         layout.setVgap(8);
         layout.setHgap(10);
 
-//        GridPane.setConstraints(addButton, 2, 20);
         Pane buttonPane = new Pane();
         buttonPane.setMaxHeight(0);
         buttonPane.setMaxWidth(0);
         buttonPane.setStyle("-fx-background-color: black;");
         addButton.setLayoutX(WINDOW_WIDTH / 2 - 50);
         showCollection.setLayoutX(WINDOW_WIDTH / 2);
-        addButton.setLayoutY(WINDOW_HEIGHT / 2 - 50);
-        showCollection.setLayoutY(WINDOW_HEIGHT / 2);
+        addButton.setLayoutY(WINDOW_HEIGHT / 2);
+        showCollection.setLayoutY(WINDOW_HEIGHT / 2 + 50);
         buttonPane.getChildren().add(addButton);
         buttonPane.getChildren().add(showCollection);
         layout.getChildren().addAll(buttonPane);
@@ -139,11 +140,12 @@ public class main extends Application {
         jacketMaterial.getItems().addAll("Cotton", "fdsfsd");
 
         //shoes action
-        shoesSize.getItems().addAll(1, 2, 3, 4);
+        shoesSize.getItems().addAll(34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46);
 
         //trousers action
-        trousersMaterial.getItems().addAll(1, 2, 3, 4);
-        waistSize.getItems().addAll(1, 2, 3, 4);
+        trousersLength.getItems().addAll(29, 30, 31, 32, 33, 34, 35, 36);
+        trousersMaterial.getItems().addAll("Cotton", "fdsfsd");
+        waistSize.getItems().addAll(29, 30, 31, 32, 33, 34, 35, 36);
 
         clothesChoiceBox.setOnAction(e -> {
             switch(getChoice(clothesChoiceBox)){
@@ -181,11 +183,6 @@ public class main extends Application {
                     TShirt tshirt = new TShirt();
                     this.removeComponentsFromLayout();
                     layout.getChildren().addAll(shirtsChoiceBox, shirtMaterial, shirtMaterialLabel, shirtSizeLabel, tshirtSize);
-
-//                    addButton.setOnAction(e1 -> {
-////                        tshirt.setSize(tshirtSize.getValue());
-//                        clothes.add(tshirt);
-//                    });
                     break;
             }
         });
@@ -217,12 +214,17 @@ public class main extends Application {
                     clothes.add(jacket);
                     break;
                 case "Shoes":
-                    System.out.println("shoes");
                     Shoes shoes = new Shoes();
+                    shoes.setSize(shoesSize.getValue());
+                    shoes.setHasHeel(hasHeel.isSelected());
+                    clothes.add(shoes);
                     break;
                 case "Trousers":
-                    System.out.println("trousers");
                     Trousers trousers = new Trousers();
+                    trousers.setLength(trousersLength.getValue());
+                    trousers.setMaterial(trousersMaterial.getValue());
+                    trousers.setWaistSize(waistSize.getValue());
+                    clothes.add(trousers);
                     break;
             }
         });

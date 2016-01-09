@@ -38,4 +38,14 @@ public class Trousers extends Clothes {
     public void setPromotion(Promotion promotion) {
         this.promotion = promotion;
     }
+
+    @Override
+    public String toString() {
+        return "Trousers{" +
+                "waistSize=" + waistSize +
+                ", length=" + length +
+                ", material='" + material + '\'' +
+                ", promotion=" + promotion +
+                '}';
+    }
 }

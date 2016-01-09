@@ -29,4 +29,13 @@ public class Shoes extends Clothes {
     public void setPromotion(Promotion promotion) {
         this.promotion = promotion;
     }
+
+    @Override
+    public String toString() {
+        return "Shoes{" +
+                "size=" + size +
+                ", hasHeel=" + hasHeel +
+                ", promotion=" + promotion +
+                '}';
+    }
 }
