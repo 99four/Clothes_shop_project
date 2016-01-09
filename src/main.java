@@ -17,11 +17,15 @@ import java.util.List;
 
 public class main extends Application {
 
-    Stage window;
-    Scene mainScene;
     private static final int WINDOW_WIDTH = 300;
     private static final int WINDOW_HEIGHT = 350;
+    private static final String[] materialArray = {"Jeans", "Corduroy", "Cotton", "Jacquard", "Flax"};
+    private static final Integer[] lengthArray = {28, 29, 30, 31, 32, 33, 34, 35, 36};
+    private static final Integer[] shoesSizeArray = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47};
     private static List<Clothes> clothes = new ArrayList<Clothes>();
+
+    Stage window;
+    Scene mainScene;
 
     GridPane layout = new GridPane();
 
@@ -31,7 +35,7 @@ public class main extends Application {
 
     //Shirt layout
     ChoiceBox<String> shirtsChoiceBox = new ChoiceBox<>();
-    ChoiceBox<Integer> shirtMaterial = new ChoiceBox<Integer>();
+    ChoiceBox<String> shirtMaterial = new ChoiceBox<String>();
     Label shirtMaterialLabel = new Label("Shirt material");
     Label shirtSizeLabel = new Label("TShirt size");
     ChoiceBox<Integer> tshirtSize = new ChoiceBox<Integer>();
@@ -78,7 +82,7 @@ public class main extends Application {
         Pane buttonPane = new Pane();
         buttonPane.setMaxHeight(0);
         buttonPane.setMaxWidth(0);
-        buttonPane.setStyle("-fx-background-color: black;");
+        buttonPane.setStyle("-fx-background-color: greenyellow;");
         addButton.setLayoutX(WINDOW_WIDTH / 2 - 50);
         showCollection.setLayoutX(WINDOW_WIDTH / 2);
         addButton.setLayoutY(WINDOW_HEIGHT / 2);
@@ -131,21 +135,22 @@ public class main extends Application {
         layout.getChildren().addAll(clothesChoiceBox);
 
         //shirt action
-        tshirtSize.getItems().addAll(1, 2, 3, 4);
+        tshirtSize.getItems().addAll(lengthArray);
+        shirtMaterial.getItems().addAll(materialArray);
 
         //jacket action
         seasonType.getItems().addAll("Spring", "Summer", "Autumn", "Winter");
-        claspType.getItems().addAll("Suwak", "Guziki");
-        jacketSize.getItems().addAll(31, 32, 33, 34, 35, 36, 37, 38);
-        jacketMaterial.getItems().addAll("Cotton", "fdsfsd");
+        claspType.getItems().addAll("Buttons", "Snap fastener", "Zipper", "Velcro");
+        jacketSize.getItems().addAll(lengthArray);
+        jacketMaterial.getItems().addAll(materialArray);
 
         //shoes action
-        shoesSize.getItems().addAll(34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46);
+        shoesSize.getItems().addAll(shoesSizeArray);
 
         //trousers action
-        trousersLength.getItems().addAll(29, 30, 31, 32, 33, 34, 35, 36);
-        trousersMaterial.getItems().addAll("Cotton", "fdsfsd");
-        waistSize.getItems().addAll(29, 30, 31, 32, 33, 34, 35, 36);
+        trousersLength.getItems().addAll(lengthArray);
+        trousersMaterial.getItems().addAll(materialArray);
+        waistSize.getItems().addAll(lengthArray);
 
         clothesChoiceBox.setOnAction(e -> {
             switch(getChoice(clothesChoiceBox)){
