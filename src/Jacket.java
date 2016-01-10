@@ -50,6 +50,7 @@ public class Jacket extends Clothes {
                 ", claspType='" + claspType + '\'' +
                 ", material='" + material + '\'' +
                 ", seasonType=" + seasonType +
+                ", photo=" + photo +
                 '}';
     }
 }

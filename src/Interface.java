@@ -1,21 +1,29 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class main extends Application {
+public class Interface extends Application {
 
     private static final int WINDOW_WIDTH = 600;
     private static final int WINDOW_HEIGHT = 500;
@@ -23,6 +31,8 @@ public class main extends Application {
     private static final Integer[] lengthArray = {28, 29, 30, 31, 32, 33, 34, 35, 36};
     private static final Integer[] shoesAndCollarSizeArray = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47};
     private static List<Clothes> clothes = new ArrayList<Clothes>();
+    private Desktop desktop = Desktop.getDesktop();
+    private static String imageFile = new String();
 
     Stage window;
     Scene mainScene;
@@ -34,17 +44,17 @@ public class main extends Application {
     Button showCollection = new Button("Show collection");
 
     //Clothes layout
-    ChoiceBox<String> name = new ChoiceBox<String>();
+    TextField name = new TextField();
     Label nameLabel = new Label("name");
     ChoiceBox<String> color = new ChoiceBox<String>();
     Label colorLabel = new Label("color");
-    ChoiceBox<String> brand = new ChoiceBox<String>();
+    TextField brand = new TextField();
     Label brandLabel = new Label("brand");
-    ChoiceBox<Double> price = new ChoiceBox<Double>();
+    TextField price = new TextField();
     Label priceLabel = new Label("price");
     ChoiceBox<String> gender = new ChoiceBox<String>();
     Label genderLabel = new Label("gender");
-    ChoiceBox<String> photo = new ChoiceBox<String>();
+    Button photo = new Button("Photo");
     Label photoLabel = new Label("photo");
 
     //Shirt layout
@@ -175,6 +185,10 @@ public class main extends Application {
         layout.getChildren().addAll(photo);
         layout.getChildren().addAll(photoLabel);
 
+        //clothes action
+        color.getItems().addAll("Red", "Blue", "Green", "Black", "Yellow", "White");
+        gender.getItems().addAll("Male", "Female");
+
         //shirt action
         tshirtSize.getItems().addAll(lengthArray);
         shirtMaterial.getItems().addAll(materialArray);
@@ -234,6 +248,22 @@ public class main extends Application {
             }
         });
 
+        FileChooser fileChooser = new FileChooser();
+        photo.setOnAction(
+                e -> {
+                    File file = fileChooser.showOpenDialog(window);
+
+                    if (file != null) {
+                        try {
+                            imageFile = file.toURI().toURL().toString();
+                        } catch (MalformedURLException e1) {
+                            e1.printStackTrace();
+                        }
+                        openFile(file);
+                        System.out.println(imageFile);
+                    }
+                });
+
         addButton.setOnAction(e1 -> {
             switch(getChoice(clothesChoiceBox)){
                 case "Shirt":
@@ -272,6 +302,7 @@ public class main extends Application {
                     jacket.setClaspType(claspType.getValue());
                     jacket.setSize(jacketSize.getValue());
                     jacket.setMaterial(jacketMaterial.getValue());
+                    jacket.setPhoto(imageFile);
                     clothes.add(jacket);
                     break;
                 case "Shoes":
@@ -315,4 +346,19 @@ public class main extends Application {
                                        trousersLengthLabel, trousersLength, trousersMaterialLabel, trousersMaterial, waistSizeLabel, waistSize,
                                        showCollection);
     }
+
+    private void openFile(File file) {
+        try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(
+                    Interface.class.getName()).log(
+                    Level.SEVERE, null, ex
+            );
+        }
+    }
+
+
+
+
 }
