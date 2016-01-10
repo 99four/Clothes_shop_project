@@ -8,11 +8,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 import java.awt.*;
 import java.io.File;
@@ -33,6 +35,7 @@ public class Interface extends Application {
     private static List<Clothes> clothes = new ArrayList<Clothes>();
     private Desktop desktop = Desktop.getDesktop();
     private static String imageFile = new String();
+    private static ImageView image;
 
     Stage window;
     Scene mainScene;
@@ -260,8 +263,9 @@ public class Interface extends Application {
                             e1.printStackTrace();
                         }
                         openFile(file);
-                        System.out.println(imageFile);
                     }
+                    /* TODO FIX */
+                    image = new ImageView(new Image(getClass().getResourceAsStream(imageFile), 100, 100, true, true));
                 });
 
         addButton.setOnAction(e1 -> {
@@ -303,6 +307,8 @@ public class Interface extends Application {
                     jacket.setSize(jacketSize.getValue());
                     jacket.setMaterial(jacketMaterial.getValue());
                     jacket.setPhoto(imageFile);
+
+                    layout.getChildren().add(image);
                     clothes.add(jacket);
                     break;
                 case "Shoes":
