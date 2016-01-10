@@ -20,4 +20,12 @@ public class Elegant extends Shirt {
     public void setHasTie(boolean hasTie) {
         this.hasTie = hasTie;
     }
+
+    @Override
+    public String toString() {
+        return "Elegant{" +
+                "collarSize=" + collarSize +
+                ", hasTie=" + hasTie +
+                '}';
+    }
 }

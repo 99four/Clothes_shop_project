@@ -21,7 +21,7 @@ public class main extends Application {
     private static final int WINDOW_HEIGHT = 350;
     private static final String[] materialArray = {"Jeans", "Corduroy", "Cotton", "Jacquard", "Flax"};
     private static final Integer[] lengthArray = {28, 29, 30, 31, 32, 33, 34, 35, 36};
-    private static final Integer[] shoesSizeArray = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47};
+    private static final Integer[] shoesAndCollarSizeArray = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47};
     private static List<Clothes> clothes = new ArrayList<Clothes>();
 
     Stage window;
@@ -137,6 +137,7 @@ public class main extends Application {
         //shirt action
         tshirtSize.getItems().addAll(lengthArray);
         shirtMaterial.getItems().addAll(materialArray);
+        collarSize.getItems().addAll(shoesAndCollarSizeArray);
 
         //jacket action
         seasonType.getItems().addAll("Spring", "Summer", "Autumn", "Winter");
@@ -145,7 +146,7 @@ public class main extends Application {
         jacketMaterial.getItems().addAll(materialArray);
 
         //shoes action
-        shoesSize.getItems().addAll(shoesSizeArray);
+        shoesSize.getItems().addAll(shoesAndCollarSizeArray);
 
         //trousers action
         trousersLength.getItems().addAll(lengthArray);
@@ -195,7 +196,21 @@ public class main extends Application {
         addButton.setOnAction(e1 -> {
             switch(getChoice(clothesChoiceBox)){
                 case "Shirt":
-                    System.out.println("SHIRT");
+                    switch(shirtsChoiceBox.getValue()){
+                        case "Elegant":
+                            Elegant elegant = new Elegant();
+                            elegant.setMaterial(shirtMaterial.getValue());
+                            elegant.setCollarSize(collarSize.getValue());
+                            elegant.setHasTie(hasTie.isSelected());
+                            clothes.add(elegant);
+                            break;
+                        case "TShirt":
+                            TShirt tShirt = new TShirt();
+                            tShirt.setMaterial(shirtMaterial.getValue());
+                            tShirt.setSize(TShirt.sizeType.M);
+                            clothes.add(tShirt);
+                            break;
+                    }
                     break;
                 case "Jacket":
                     Jacket jacket = new Jacket();
@@ -232,6 +247,7 @@ public class main extends Application {
                     clothes.add(trousers);
                     break;
             }
+
         });
 
         showCollection.setOnAction(e -> {

@@ -15,4 +15,12 @@ public class TShirt extends Shirt {
     public void setSize(sizeType size) {
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return "TShirt{" +
+                "size=" + size +
+                '}';
+    }
+
 }

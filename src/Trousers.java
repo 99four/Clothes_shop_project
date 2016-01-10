@@ -48,4 +48,8 @@ public class Trousers extends Clothes {
                 ", promotion=" + promotion +
                 '}';
     }
+
+
+
+
 }

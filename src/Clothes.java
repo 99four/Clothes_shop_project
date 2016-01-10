@@ -11,35 +11,19 @@ public class Clothes {
         RED, BLUE, GREEN, BLACK, YELLOW, WHITE;
     }
 
-    private genderType gender;
-    private String photo;
-    private String name;
-    private Color color;
-    private String brand;
-    private double price;
+    protected genderType gender;
+    protected String photo;
+    protected String name;
+    protected Color color;
+    protected String brand;
+    protected double price;
 
-    public genderType getGender() {
-        return gender;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setGender(genderType gender) {
-        this.gender = gender;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public Color getColor() {
@@ -50,12 +34,28 @@ public class Clothes {
         this.color = color;
     }
 
-    public String getBrand() {
-        return brand;
+    public genderType getGender() {
+        return gender;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setGender(genderType gender) {
+        this.gender = gender;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public double getPrice() {
