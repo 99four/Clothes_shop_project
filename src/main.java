@@ -17,8 +17,8 @@ import java.util.List;
 
 public class main extends Application {
 
-    private static final int WINDOW_WIDTH = 300;
-    private static final int WINDOW_HEIGHT = 350;
+    private static final int WINDOW_WIDTH = 600;
+    private static final int WINDOW_HEIGHT = 500;
     private static final String[] materialArray = {"Jeans", "Corduroy", "Cotton", "Jacquard", "Flax"};
     private static final Integer[] lengthArray = {28, 29, 30, 31, 32, 33, 34, 35, 36};
     private static final Integer[] shoesAndCollarSizeArray = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47};
@@ -32,6 +32,20 @@ public class main extends Application {
     ChoiceBox<String> clothesChoiceBox = new ChoiceBox<>();
     Button addButton = new Button("Add item");
     Button showCollection = new Button("Show collection");
+
+    //Clothes layout
+    ChoiceBox<String> name = new ChoiceBox<String>();
+    Label nameLabel = new Label("name");
+    ChoiceBox<String> color = new ChoiceBox<String>();
+    Label colorLabel = new Label("color");
+    ChoiceBox<String> brand = new ChoiceBox<String>();
+    Label brandLabel = new Label("brand");
+    ChoiceBox<Double> price = new ChoiceBox<Double>();
+    Label priceLabel = new Label("price");
+    ChoiceBox<String> gender = new ChoiceBox<String>();
+    Label genderLabel = new Label("gender");
+    ChoiceBox<String> photo = new ChoiceBox<String>();
+    Label photoLabel = new Label("photo");
 
     //Shirt layout
     ChoiceBox<String> shirtsChoiceBox = new ChoiceBox<>();
@@ -91,38 +105,54 @@ public class main extends Application {
         buttonPane.getChildren().add(showCollection);
         layout.getChildren().addAll(buttonPane);
 
+        int i = 0;
+        int j = 0;
+        //gridpane constraints for clothes
+        GridPane.setConstraints(name, i + 1, j + 2);
+        GridPane.setConstraints(nameLabel, i + 2, j + 2);
+        GridPane.setConstraints(color, i + 1, j + 3);
+        GridPane.setConstraints(colorLabel, i + 2, j + 3);
+        GridPane.setConstraints(brand, i + 1, j + 4);
+        GridPane.setConstraints(brandLabel, i + 2, j + 4);
+        GridPane.setConstraints(price, i + 1, j + 5);
+        GridPane.setConstraints(priceLabel, i + 2, j + 5);
+        GridPane.setConstraints(gender, i + 1, j + 6);
+        GridPane.setConstraints(genderLabel, i + 2, j + 6);
+        GridPane.setConstraints(photo, i + 1, j + 7);
+        GridPane.setConstraints(photoLabel, i + 2, j + 7);
+
         //gridpane constraints for shirt
-        GridPane.setConstraints(shirtsChoiceBox, 1, 1);
-        GridPane.setConstraints(shirtMaterial, 1, 2);
-        GridPane.setConstraints(shirtMaterialLabel, 2, 2);
-        GridPane.setConstraints(tshirtSize, 1, 3);
-        GridPane.setConstraints(shirtSizeLabel, 2, 3);
-        GridPane.setConstraints(collarSize, 1, 3);
-        GridPane.setConstraints(collarSizeLabel, 2, 3);
-        GridPane.setConstraints(hasTie, 1, 4);
+        GridPane.setConstraints(shirtsChoiceBox, i + 5, j + 2);
+        GridPane.setConstraints(shirtMaterial, i + 5, j + 3);
+        GridPane.setConstraints(shirtMaterialLabel, i + 6, j + 3);
+        GridPane.setConstraints(tshirtSize, i + 5, j + 4);
+        GridPane.setConstraints(shirtSizeLabel, i + 6, j + 4);
+        GridPane.setConstraints(collarSize, i + 5, j + 4);
+        GridPane.setConstraints(collarSizeLabel, i + 6, j + 5);
+        GridPane.setConstraints(hasTie, i + 5, j + 5);
 
         //gridpane constraints for jacket
-        GridPane.setConstraints(seasonType, 1, 1);
-        GridPane.setConstraints(seasonTypeLabel, 2, 1);
-        GridPane.setConstraints(claspType, 1, 2);
-        GridPane.setConstraints(claspTypeLabel, 2, 2);
-        GridPane.setConstraints(jacketSize, 1, 3);
-        GridPane.setConstraints(jacketSizeLabel, 2, 3);
-        GridPane.setConstraints(jacketMaterial, 1, 4);
-        GridPane.setConstraints(jacketMaterialLabel, 2, 4);
+        GridPane.setConstraints(seasonType, i + 5, j + 2);
+        GridPane.setConstraints(seasonTypeLabel, i + 6, j + 2);
+        GridPane.setConstraints(claspType, i + 5, j + 3);
+        GridPane.setConstraints(claspTypeLabel, i + 6, j + 3);
+        GridPane.setConstraints(jacketSize, i + 5, j + 4);
+        GridPane.setConstraints(jacketSizeLabel, i + 6, j + 4);
+        GridPane.setConstraints(jacketMaterial, i + 5, j + 5);
+        GridPane.setConstraints(jacketMaterialLabel, i + 6, j + 5);
 
         //gridpane constraints for shoes
-        GridPane.setConstraints(shoesSize, 1, 1);
-        GridPane.setConstraints(shoesSizeLabel, 2, 1);
-        GridPane.setConstraints(hasHeel, 1, 2);
+        GridPane.setConstraints(shoesSize, i + 5, j + 2);
+        GridPane.setConstraints(shoesSizeLabel, i + 6, j + 2);
+        GridPane.setConstraints(hasHeel, i + 5, j + 3);
 
         //gridpane constraints for trousers
-        GridPane.setConstraints(trousersLength, 1, 1);
-        GridPane.setConstraints(trousersLengthLabel, 2, 1);
-        GridPane.setConstraints(trousersMaterial, 1, 2);
-        GridPane.setConstraints(trousersMaterialLabel, 2, 2);
-        GridPane.setConstraints(waistSize, 1, 3);
-        GridPane.setConstraints(waistSizeLabel, 2, 3);
+        GridPane.setConstraints(trousersLength, i + 5, j + 2);
+        GridPane.setConstraints(trousersLengthLabel, i + 6, j + 2);
+        GridPane.setConstraints(trousersMaterial, i + 5, j + 3);
+        GridPane.setConstraints(trousersMaterialLabel, i + 6, j + 3);
+        GridPane.setConstraints(waistSize, i + 5, j + 4);
+        GridPane.setConstraints(waistSizeLabel, i + 6, j + 4);
 
         clothesChoiceBox.getItems().addAll("Shirt", "Jacket", "Shoes", "Trousers");
         shirtsChoiceBox.getItems().addAll("Elegant", "TShirt");
@@ -131,8 +161,19 @@ public class main extends Application {
         clothesChoiceBox.setValue("Shoes");
         shirtsChoiceBox.setValue("Elegant");
 
-        //only 1 choicebox at start
         layout.getChildren().addAll(clothesChoiceBox);
+        layout.getChildren().addAll(name);
+        layout.getChildren().addAll(nameLabel);
+        layout.getChildren().addAll(color);
+        layout.getChildren().addAll(colorLabel);
+        layout.getChildren().addAll(brand);
+        layout.getChildren().addAll(brandLabel);
+        layout.getChildren().addAll(price);
+        layout.getChildren().addAll(priceLabel);
+        layout.getChildren().addAll(gender);
+        layout.getChildren().addAll(genderLabel);
+        layout.getChildren().addAll(photo);
+        layout.getChildren().addAll(photoLabel);
 
         //shirt action
         tshirtSize.getItems().addAll(lengthArray);
