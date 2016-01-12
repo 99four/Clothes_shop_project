@@ -482,8 +482,6 @@ public class Interface extends Application {
                     clothes.add(trousers);
                     break;
             }
-
-
         });
 
         showCollection.setOnAction(e -> {
