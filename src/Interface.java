@@ -1,15 +1,11 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -118,6 +114,7 @@ public class Interface extends Application {
         buttonPane.getChildren().add(addButton);
         buttonPane.getChildren().add(showCollection);
         layout.getChildren().addAll(buttonPane);
+        layout.setStyle("-fx-background-color: brown;");
 
         int i = 0;
         int j = 0;
@@ -269,7 +266,7 @@ public class Interface extends Application {
                         openFile(file);
                     }
                     System.out.println(file);
-                    image = new ImageView(new Image(getClass().getResourceAsStream("file:cynk.jpg"), 100, 100, true, true));
+//                    image = new ImageView(new Image(getClass().getResourceAsStream("file:cynk.jpg"), 100, 100, true, true));
                 });
 
         addButton.setOnAction(e1 -> {

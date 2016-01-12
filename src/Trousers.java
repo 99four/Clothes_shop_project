@@ -46,6 +46,12 @@ public class Trousers extends Clothes {
                 ", length=" + length +
                 ", material='" + material + '\'' +
                 ", promotion=" + promotion +
+                "brand='" + brand + '\'' +
+                ", gender=" + gender +
+                ", photo='" + photo + '\'' +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", price=" + price +
                 '}';
     }
 }

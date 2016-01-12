@@ -36,6 +36,12 @@ public class Shoes extends Clothes {
                 "size=" + size +
                 ", hasHeel=" + hasHeel +
                 ", promotion=" + promotion +
+                "brand='" + brand + '\'' +
+                ", gender=" + gender +
+                ", photo='" + photo + '\'' +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", price=" + price +
                 '}';
     }
 }

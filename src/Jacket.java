@@ -51,6 +51,12 @@ public class Jacket extends Clothes {
                 ", material='" + material + '\'' +
                 ", seasonType=" + seasonType +
                 ", photo=" + photo +
+                "brand='" + brand + '\'' +
+                ", gender=" + gender +
+                ", photo='" + photo + '\'' +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", price=" + price +
                 '}';
     }
 }
