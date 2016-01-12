@@ -35,7 +35,7 @@ public class Interface extends Application {
     private static List<Clothes> clothes = new ArrayList<Clothes>();
     private Desktop desktop = Desktop.getDesktop();
     private static String imageFile = new String();
-    private static ImageView image;
+
 
     Stage window;
     Scene mainScene;
@@ -59,6 +59,7 @@ public class Interface extends Application {
     Label genderLabel = new Label("gender");
     Button photo = new Button("Photo");
     Label photoLabel = new Label("photo");
+    ImageView image = new ImageView();
 
     //Shirt layout
     ChoiceBox<String> shirtsChoiceBox = new ChoiceBox<>();
@@ -133,6 +134,7 @@ public class Interface extends Application {
         GridPane.setConstraints(genderLabel, i + 2, j + 6);
         GridPane.setConstraints(photo, i + 1, j + 7);
         GridPane.setConstraints(photoLabel, i + 2, j + 7);
+        GridPane.setConstraints(image, i + 2, j + 8);
 
         //gridpane constraints for shirt
         GridPane.setConstraints(shirtsChoiceBox, i + 5, j + 2);
@@ -187,6 +189,7 @@ public class Interface extends Application {
         layout.getChildren().addAll(genderLabel);
         layout.getChildren().addAll(photo);
         layout.getChildren().addAll(photoLabel);
+        layout.getChildren().addAll(image);
 
         //clothes action
         color.getItems().addAll("Red", "Blue", "Green", "Black", "Yellow", "White");
@@ -259,13 +262,14 @@ public class Interface extends Application {
                     if (file != null) {
                         try {
                             imageFile = file.toURI().toURL().toString();
+                            System.out.println("najpierw");
                         } catch (MalformedURLException e1) {
                             e1.printStackTrace();
                         }
                         openFile(file);
                     }
-                    /* TODO FIX */
-                    image = new ImageView(new Image(getClass().getResourceAsStream(imageFile), 100, 100, true, true));
+                    System.out.println(file);
+                    image = new ImageView(new Image(getClass().getResourceAsStream("file:cynk.jpg"), 100, 100, true, true));
                 });
 
         addButton.setOnAction(e1 -> {
@@ -274,6 +278,37 @@ public class Interface extends Application {
                     switch(shirtsChoiceBox.getValue()){
                         case "Elegant":
                             Elegant elegant = new Elegant();
+                            elegant.setName(name.getText());
+                            switch(color.getValue()){
+                                case "Red":
+                                    elegant.setColor(Clothes.Color.RED);
+                                    break;
+                                case "Blue":
+                                    elegant.setColor(Clothes.Color.BLUE);
+                                    break;
+                                case "Green":
+                                    elegant.setColor(Clothes.Color.GREEN);
+                                    break;
+                                case "Black":
+                                    elegant.setColor(Clothes.Color.BLACK);
+                                    break;
+                                case "Yellow":
+                                    elegant.setColor(Clothes.Color.YELLOW);
+                                    break;
+                                case "White":
+                                    elegant.setColor(Clothes.Color.WHITE);
+                                    break;
+                            }
+                            elegant.setBrand(brand.getText());
+                            elegant.setPrice(Double.parseDouble(price.getText()));
+                            switch(gender.getValue()){
+                                case "Male":
+                                    elegant.setGender(Clothes.genderType.MALE);
+                                    break;
+                                case "Female":
+                                    elegant.setGender(Clothes.genderType.FEMALE);
+                                    break;
+                            }
                             elegant.setMaterial(shirtMaterial.getValue());
                             elegant.setCollarSize(collarSize.getValue());
                             elegant.setHasTie(hasTie.isSelected());
@@ -281,6 +316,37 @@ public class Interface extends Application {
                             break;
                         case "TShirt":
                             TShirt tShirt = new TShirt();
+                            tShirt.setName(name.getText());
+                            switch(color.getValue()){
+                                case "Red":
+                                    tShirt.setColor(Clothes.Color.RED);
+                                    break;
+                                case "Blue":
+                                    tShirt.setColor(Clothes.Color.BLUE);
+                                    break;
+                                case "Green":
+                                    tShirt.setColor(Clothes.Color.GREEN);
+                                    break;
+                                case "Black":
+                                    tShirt.setColor(Clothes.Color.BLACK);
+                                    break;
+                                case "Yellow":
+                                    tShirt.setColor(Clothes.Color.YELLOW);
+                                    break;
+                                case "White":
+                                    tShirt.setColor(Clothes.Color.WHITE);
+                                    break;
+                            }
+                            tShirt.setBrand(brand.getText());
+                            tShirt.setPrice(Double.parseDouble(price.getText()));
+                            switch(gender.getValue()){
+                                case "Male":
+                                    tShirt.setGender(Clothes.genderType.MALE);
+                                    break;
+                                case "Female":
+                                    tShirt.setGender(Clothes.genderType.FEMALE);
+                                    break;
+                            }
                             tShirt.setMaterial(shirtMaterial.getValue());
                             tShirt.setSize(TShirt.sizeType.M);
                             clothes.add(tShirt);
@@ -289,6 +355,37 @@ public class Interface extends Application {
                     break;
                 case "Jacket":
                     Jacket jacket = new Jacket();
+                    jacket.setName(name.getText());
+                    switch(color.getValue()){
+                        case "Red":
+                            jacket.setColor(Clothes.Color.RED);
+                            break;
+                        case "Blue":
+                            jacket.setColor(Clothes.Color.BLUE);
+                            break;
+                        case "Green":
+                            jacket.setColor(Clothes.Color.GREEN);
+                            break;
+                        case "Black":
+                            jacket.setColor(Clothes.Color.BLACK);
+                            break;
+                        case "Yellow":
+                            jacket.setColor(Clothes.Color.YELLOW);
+                            break;
+                        case "White":
+                            jacket.setColor(Clothes.Color.WHITE);
+                            break;
+                    }
+                    jacket.setBrand(brand.getText());
+                    jacket.setPrice(Double.parseDouble(price.getText()));
+                    switch(gender.getValue()){
+                        case "Male":
+                            jacket.setGender(Clothes.genderType.MALE);
+                            break;
+                        case "Female":
+                            jacket.setGender(Clothes.genderType.FEMALE);
+                            break;
+                    }
                     switch(seasonType.getValue()){
                         case "Spring":
                             jacket.setSeasonType(Jacket.season.SPRING);
@@ -307,24 +404,85 @@ public class Interface extends Application {
                     jacket.setSize(jacketSize.getValue());
                     jacket.setMaterial(jacketMaterial.getValue());
                     jacket.setPhoto(imageFile);
-
-                    layout.getChildren().add(image);
                     clothes.add(jacket);
                     break;
                 case "Shoes":
                     Shoes shoes = new Shoes();
+                    shoes.setName(name.getText());
+                    switch(color.getValue()){
+                        case "Red":
+                            shoes.setColor(Clothes.Color.RED);
+                            break;
+                        case "Blue":
+                            shoes.setColor(Clothes.Color.BLUE);
+                            break;
+                        case "Green":
+                            shoes.setColor(Clothes.Color.GREEN);
+                            break;
+                        case "Black":
+                            shoes.setColor(Clothes.Color.BLACK);
+                            break;
+                        case "Yellow":
+                            shoes.setColor(Clothes.Color.YELLOW);
+                            break;
+                        case "White":
+                            shoes.setColor(Clothes.Color.WHITE);
+                            break;
+                    }
+                    shoes.setBrand(brand.getText());
+                    shoes.setPrice(Double.parseDouble(price.getText()));
+                    switch(gender.getValue()){
+                        case "Male":
+                            shoes.setGender(Clothes.genderType.MALE);
+                            break;
+                        case "Female":
+                            shoes.setGender(Clothes.genderType.FEMALE);
+                            break;
+                    }
                     shoes.setSize(shoesSize.getValue());
                     shoes.setHasHeel(hasHeel.isSelected());
                     clothes.add(shoes);
                     break;
                 case "Trousers":
                     Trousers trousers = new Trousers();
+                    trousers.setName(name.getText());
+                    switch(color.getValue()){
+                        case "Red":
+                            trousers.setColor(Clothes.Color.RED);
+                            break;
+                        case "Blue":
+                            trousers.setColor(Clothes.Color.BLUE);
+                            break;
+                        case "Green":
+                            trousers.setColor(Clothes.Color.GREEN);
+                            break;
+                        case "Black":
+                            trousers.setColor(Clothes.Color.BLACK);
+                            break;
+                        case "Yellow":
+                            trousers.setColor(Clothes.Color.YELLOW);
+                            break;
+                        case "White":
+                            trousers.setColor(Clothes.Color.WHITE);
+                            break;
+                    }
+                    trousers.setBrand(brand.getText());
+                    trousers.setPrice(Double.parseDouble(price.getText()));
+                    switch(gender.getValue()){
+                        case "Male":
+                            trousers.setGender(Clothes.genderType.MALE);
+                            break;
+                        case "Female":
+                            trousers.setGender(Clothes.genderType.FEMALE);
+                            break;
+                    }
                     trousers.setLength(trousersLength.getValue());
                     trousers.setMaterial(trousersMaterial.getValue());
                     trousers.setWaistSize(waistSize.getValue());
                     clothes.add(trousers);
                     break;
             }
+
 
         });
 

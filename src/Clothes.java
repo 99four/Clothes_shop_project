@@ -65,4 +65,16 @@ public class Clothes {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Clothes{" +
+                "brand='" + brand + '\'' +
+                ", gender=" + gender +
+                ", photo='" + photo + '\'' +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", price=" + price +
+                '}';
+    }
 }

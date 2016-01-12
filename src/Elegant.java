@@ -26,6 +26,12 @@ public class Elegant extends Shirt {
         return "Elegant{" +
                 "collarSize=" + collarSize +
                 ", hasTie=" + hasTie +
+                "brand='" + brand + '\'' +
+                ", gender=" + gender +
+                ", photo='" + photo + '\'' +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", price=" + price +
                 '}';
     }
 }

@@ -19,6 +19,12 @@ public class TShirt extends Shirt {
     @Override
     public String toString() {
         return "TShirt{" +
+                "brand='" + brand + '\'' +
+                ", gender=" + gender +
+                ", photo='" + photo + '\'' +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                ", price=" + price +
                 "size=" + size +
                 '}';
     }
