@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
 
 import java.awt.*;
 import java.io.File;
@@ -29,7 +28,7 @@ public class Interface extends Application {
     private static final String[] materialArray = {"Jeans", "Corduroy", "Cotton", "Jacquard", "Flax"};
     private static final Integer[] lengthArray = {28, 29, 30, 31, 32, 33, 34, 35, 36};
     private static final Integer[] shoesAndCollarSizeArray = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47};
-    private static List<Clothes> clothes = new ArrayList<Clothes>();
+    static List<Clothes> clothes = new ArrayList<Clothes>();
     private Desktop desktop = Desktop.getDesktop();
     static String imageFile = new String();
 
@@ -43,6 +42,7 @@ public class Interface extends Application {
     ChoiceBox<String> clothesChoiceBox = new ChoiceBox<>();
     Button addButton = new Button("Add item");
     Button showCollection = new Button("Show collection");
+    Button backToMainView = new Button("Back to main view");
 
     //Clothes layout
     TextField name = new TextField();
@@ -113,8 +113,16 @@ public class Interface extends Application {
         showCollection.setLayoutX(WINDOW_WIDTH / 2);
         addButton.setLayoutY(WINDOW_HEIGHT / 2);
         showCollection.setLayoutY(WINDOW_HEIGHT / 2 + 50);
+        backToMainView.setLayoutX(WINDOW_WIDTH / 2 - 100);
+        backToMainView.setLayoutY(WINDOW_WIDTH / 2 - 100);
         buttonPane.getChildren().add(addButton);
         buttonPane.getChildren().add(showCollection);
+        buttonPane.getChildren().add(backToMainView);
+
+        backToMainView.setOnAction(e -> {
+            window.setScene(MainWindow.scene1);
+        });
+
         layout.getChildren().addAll(buttonPane);
         layout.setStyle("-fx-background-color: brown;");
 
@@ -312,6 +320,7 @@ public class Interface extends Application {
                             elegant.setCollarSize(collarSize.getValue());
                             elegant.setHasTie(hasTie.isSelected());
                             clothes.add(elegant);
+                            System.out.println(clothes);
                             break;
                         case "TShirt":
                             TShirt tShirt = new TShirt();

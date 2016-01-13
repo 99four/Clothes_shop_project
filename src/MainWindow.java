@@ -7,8 +7,10 @@ import javafx.scene.control.*;
 public class MainWindow extends Application {
 
     Stage window;
-    Scene scene1, scene2;
+    static Scene scene1;
+    Scene scene2;
     Interface i = new Interface();
+    AllItems allItems = new AllItems();
 
     public static void main(String[] args) {
         launch(args);
@@ -22,7 +24,7 @@ public class MainWindow extends Application {
         //Button 1
         Label label1 = new Label("Welcome to the first scene!");
         Button button1 = new Button("Go to scene 2");
-
+        Button goToItemsView = new Button("Go to items view");
 
         try {
             i.start(primaryStage);
@@ -31,10 +33,18 @@ public class MainWindow extends Application {
         }
 
         button1.setOnAction(e -> window.setScene(i.mainScene));
+        goToItemsView.setOnAction(e -> {
+            try {
+                allItems.start(primaryStage);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            window.setScene(allItems.allItemsScene);
+        });
 
         //Layout 1 - children laid out in vertical column
-        VBox layout1 = new VBox(20);
-        layout1.getChildren().addAll(label1, button1);
+        VBox layout1 = new VBox(10);
+        layout1.getChildren().addAll(label1, button1, goToItemsView);
         scene1 = new Scene(layout1, 200, 200);
 
 
