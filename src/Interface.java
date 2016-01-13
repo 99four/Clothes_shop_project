@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
@@ -30,11 +31,12 @@ public class Interface extends Application {
     private static final Integer[] shoesAndCollarSizeArray = {33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47};
     private static List<Clothes> clothes = new ArrayList<Clothes>();
     private Desktop desktop = Desktop.getDesktop();
-    private static String imageFile = new String();
+    static String imageFile = new String();
 
 
     Stage window;
-    Scene mainScene;
+    public static Scene mainScene = null;
+    static Scene globalScene = null;
 
     GridPane layout = new GridPane();
 
@@ -488,7 +490,9 @@ public class Interface extends Application {
         });
 
         mainScene = new Scene(layout, WINDOW_WIDTH, WINDOW_HEIGHT);
+        globalScene = new Scene(new VBox(20), WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setScene(mainScene);
+
         window.show();
     }
 
